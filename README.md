@@ -2,7 +2,8 @@
 
 # SupportEngineKit Framework
 
-This Swift framework allows iOS and macOS developers to easily integrate SupportEngine API into their native apps.
+This Swift framework allows iOS, iPadOS and macOS developers to easily integrate SupportEngine features into their native apps.
+Check supportengine.cloud for more information.
 
 ## Features
 - Create support tickets
