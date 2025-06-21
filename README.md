@@ -172,7 +172,7 @@ This Swift framework allows iOS and macOS developers to easily integrate Support
 - View ticket details and replies
 - Reply to tickets
 - Supports custom fields (no attachments)
-- Works on iOS and macOS
+- Works on iOS, iPadOS and macOS
 
 
 ## Usage
