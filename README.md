@@ -162,7 +162,7 @@ curl -X POST https://yourdomain.com/api/ticket_reply.php \
 - Attachments are not supported via the API.
 - Custom fields must be passed as a JSON object in the `custom_fields` parameter when creating a ticket.
 
-# SupportEngine Swift Framework
+# SupportEngineKit Framework
 
 This Swift framework allows iOS and macOS developers to easily integrate SupportEngine API into their native apps.
 
@@ -174,9 +174,6 @@ This Swift framework allows iOS and macOS developers to easily integrate Support
 - Supports custom fields (no attachments)
 - Works on iOS and macOS
 
-## Installation
-- Add the `api` folder as a Swift package or Xcode project to your app.
-- Or, copy `SupportEngineAPI.swift` into your project.
 
 ## Usage
 
