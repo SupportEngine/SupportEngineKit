@@ -1,4 +1,87 @@
-# SupportEngine API Documentation
+
+
+# SupportEngineKit Framework
+
+This Swift framework allows iOS and macOS developers to easily integrate SupportEngine API into their native apps.
+
+## Features
+- Create support tickets
+- List user tickets
+- View ticket details and replies
+- Reply to tickets
+- Supports custom fields (no attachments)
+- Works on iOS, iPadOS and macOS
+
+
+## Usage
+
+```swift
+import SupportEngineAPI
+
+// Set your API token and base URL
+SupportEngineAPI.apiToken = "YOUR_API_TOKEN"
+SupportEngineAPI.baseURL = "https://yourdomain.com/api/"
+
+// Create a ticket
+SupportEngineAPI.createTicket(
+    subject: "Test Ticket",
+    message: "This is a test.",
+    userEmail: "user@example.com",
+    customFields: ["1": "Value1"]
+) { result in
+    switch result {
+    case .success(let ticketId):
+        print("Created ticket with ID: \(ticketId)")
+    case .failure(let error):
+        print("Error: \(error.localizedDescription)")
+    }
+}
+
+// List tickets
+SupportEngineAPI.listTickets(userEmail: "user@example.com") { result in
+    switch result {
+    case .success(let tickets):
+        print(tickets)
+    case .failure(let error):
+        print(error)
+    }
+}
+
+// View a ticket
+SupportEngineAPI.viewTicket(ticketId: 123, userEmail: "user@example.com") { result in
+    switch result {
+    case .success(let ticketData):
+        print(ticketData)
+    case .failure(let error):
+        print(error)
+    }
+}
+
+// Reply to a ticket
+SupportEngineAPI.replyToTicket(ticketId: 123, userEmail: "user@example.com", message: "Reply message") { result in
+    switch result {
+    case .success(let replyId):
+        print("Reply sent, ID: \(replyId)")
+    case .failure(let error):
+        print(error)
+    }
+}
+```
+
+## Notes
+- All API requests require the correct API token.
+- All responses are handled asynchronously via completion handlers.
+- Custom fields must be passed as a `[String: String]` dictionary.
+- Attachments are not supported in the API.
+
+## License
+MIT 
+
+
+
+
+
+# SupportEngine API JSON Documentation
 
 ## Authentication
 All API requests require an API token in the `Authorization` header:
@@ -161,80 +244,3 @@ curl -X POST https://yourdomain.com/api/ticket_reply.php \
 - All responses are in JSON.
 - Attachments are not supported via the API.
 - Custom fields must be passed as a JSON object in the `custom_fields` parameter when creating a ticket.
-
-# SupportEngineKit Framework
-
-This Swift framework allows iOS and macOS developers to easily integrate SupportEngine API into their native apps.
-
-## Features
-- Create support tickets
-- List user tickets
-- View ticket details and replies
-- Reply to tickets
-- Supports custom fields (no attachments)
-- Works on iOS, iPadOS and macOS
-
-
-## Usage
-
-```swift
-import SupportEngineAPI
-
-// Set your API token and base URL
-SupportEngineAPI.apiToken = "YOUR_API_TOKEN"
-SupportEngineAPI.baseURL = "https://yourdomain.com/api/"
-
-// Create a ticket
-SupportEngineAPI.createTicket(
-    subject: "Test Ticket",
-    message: "This is a test.",
-    userEmail: "user@example.com",
-    customFields: ["1": "Value1"]
-) { result in
-    switch result {
-    case .success(let ticketId):
-        print("Created ticket with ID: \(ticketId)")
-    case .failure(let error):
-        print("Error: \(error.localizedDescription)")
-    }
-}
-
-// List tickets
-SupportEngineAPI.listTickets(userEmail: "user@example.com") { result in
-    switch result {
-    case .success(let tickets):
-        print(tickets)
-    case .failure(let error):
-        print(error)
-    }
-}
-
-// View a ticket
-SupportEngineAPI.viewTicket(ticketId: 123, userEmail: "user@example.com") { result in
-    switch result {
-    case .success(let ticketData):
-        print(ticketData)
-    case .failure(let error):
-        print(error)
-    }
-}
-
-// Reply to a ticket
-SupportEngineAPI.replyToTicket(ticketId: 123, userEmail: "user@example.com", message: "Reply message") { result in
-    switch result {
-    case .success(let replyId):
-        print("Reply sent, ID: \(replyId)")
-    case .failure(let error):
-        print(error)
-    }
-}
-```
-
-## Notes
-- All API requests require the correct API token.
-- All responses are handled asynchronously via completion handlers.
-- Custom fields must be passed as a `[String: String]` dictionary.
-- Attachments are not supported in the API.
-
-## License
-MIT or your preferred license. 
